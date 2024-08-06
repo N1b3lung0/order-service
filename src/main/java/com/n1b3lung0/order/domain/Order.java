@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
@@ -21,20 +22,23 @@ import java.math.BigDecimal;
 @NoArgsConstructor(force = true)
 public final class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "id", nullable = false)
-    private final Long id;
+    private final UUID id;
+    @Column(name = "order_number", nullable = false, unique = true)
     private final String orderNumber;
+    @Column(name = "sku_code")
     private final String skuCode;
+    @Column(name = "price")
     private final BigDecimal price;
+    @Column(name = "quantity")
     private final Integer quantity;
 
     public static Order create(
-            String orderNumber,
             String skuCode,
             BigDecimal price,
             Integer quantity
     ) {
-        return new Order(null, orderNumber, skuCode, price, quantity);
+        return new Order(null, UUID.randomUUID().toString(), skuCode, price, quantity);
     }
 }
