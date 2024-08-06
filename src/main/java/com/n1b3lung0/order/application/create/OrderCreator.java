@@ -15,7 +15,6 @@ public class OrderCreator {
 
     public Order placeOrder(OrderCreateRequest request) {
         Order order = request.toOrder(
-                request.orderNumber(),
                 request.skuCode(),
                 request.price(),
                 request.quantity()
