@@ -1,7 +1,7 @@
 services:
   postgresql:
     image: postgres:16.3-alpine
-    container_name: postgres
+    container_name: order-service-postgres
     restart: always
     environment:
       POSTGRES_DB: orders
